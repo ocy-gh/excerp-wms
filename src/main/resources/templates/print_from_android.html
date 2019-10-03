@@ -9,42 +9,40 @@
     </object>
 </head>
 <body onload="print()">
-<h2>Thermal Printer Test-Print</h2>
-<!--<p id="demo" th:text="${a}"></p>-->
-<p id="demo" ></p>
+    <h2>Thermal Printer Test-Print</h2>
+    <p id="demo" th:text="${www}"></p>
 
-<script>
-    var LODOP=getLodop();
-    function data() {
-        // var information = document.getElementById("demo").innerHTML;
-        var shipping={};
-        shippingList['order_id'] = $("#demo").val();
+    <script>
+        var LODOP=getLodop();
+        function data() {
+            // var information = document.getElementById("demo");
+            var shipping={};
+            // shippingList['order_id'] = $("#demo").val();
 
-        LODOP.PRINT_INIT("");
-        LODOP.ADD_PRINT_TEXT(30,10,350,30,information);
-        LODOP.SET_PRINT_STYLEA(0,"QRCodeVersion",7);
+            LODOP.PRINT_INIT("");
+            LODOP.ADD_PRINT_TEXT(30,10,350,30,"erteretetee");
 
-        $.ajax({
-            type: 'post',
-            url:"/callback",
-            data: JSON.stringify(shippingList),
-            contentType: "application/json",
+            $.ajax({
+                type: 'post',
+                url:"/callback",
+                data: JSON.parse(shipping),
+                contentType: "application/json",
 
-            success : function(response){
-                layer.close(index);
-                layer.msg(response.message);
+                success : function(response){
+                    layer.close(index);
+                    layer.msg(response.message);
 
-                if(response === 200){
-                    location.href="/callback"
+                    if(response === 200){
+                        location.href="/callback"
+                    }
                 }
-            }
-        });
-    }
-    function print() {
-        LODOP.WRITE_PORT_DATA("USB001",LODOP.PREVIEW(data()));
-    }
+            });
+        }
+        function print() {
+            LODOP.WRITE_PORT_DATA("USB001",LODOP.PREVIEW(data()));
+        }
 
 
-</script>
+    </script>
 </body>
 </html>
