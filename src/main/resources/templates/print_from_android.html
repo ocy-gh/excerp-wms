@@ -10,10 +10,25 @@
 </head>
 <body onload="print()">
     <h2>Thermal Printer Test-Print</h2>
-    <p id="demo" th:text="${www}"></p>
+    <p id="demo" th:text="${testing}"></p>
 
     <script>
         var LODOP=getLodop();
+        var information = document.getElementById("demo").innerHTML;
+        var ws = new WebSocket("http://47.254.235.59/print");
+        ws.alert("connected connected!!!")
+        ws.onopen = function () {
+            ws.alert("hello hello hello dummy")
+        };
+        ws.onclose = function (event) {
+            ws.alert("close close close dummy")
+        };
+        ws.onmessage = function (event) {
+            var received_msg = event.data;
+            print(received_msg);
+            alert("Message is received...");
+        };
+
         function data() {
             // var information = document.getElementById("demo");
             var shipping={};
@@ -41,8 +56,6 @@
         function print() {
             LODOP.WRITE_PORT_DATA("USB001",LODOP.PREVIEW(data()));
         }
-
-
     </script>
 </body>
 </html>
