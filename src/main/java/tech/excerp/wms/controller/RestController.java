@@ -45,8 +45,7 @@ public class RestController {
         try {
             int serverPort = 8082;
             InetAddress host = InetAddress.getByName("192.168.0.157");
-            System.out.println("Connecting to server on port 123123" + serverPort);
-
+            System.out.println("Connecting to server on port " + serverPort);
             Socket socket = new Socket(host,serverPort);
             //Socket socket = new Socket("127.0.0.1", serverPort);
             System.out.println("Just connected to " + socket.getRemoteSocketAddress());
